@@ -3,6 +3,7 @@ import ai
 import time
 import sys
 from pybrain.tools.customxml.networkwriter import NetworkWriter
+import random
 
 
 class TTTPlay(object):
@@ -138,6 +139,13 @@ if __name__ == "__main__":
             save = raw_input("save? (y/n):")
             if save.lower() == "yes" or save.lower() == "y":
                 NNAI.brain.dump(brainfile)
+
+    if sys.argv[1] == "play":
+        human = ai.TTTHuman()
+        players = [human, LAI]
+        order = random.choice([0,1])
+        game = TTTGame(players[order], players[(order+1)%2], verbose = False, tbm = 0)
+        game.play()
         
     
 

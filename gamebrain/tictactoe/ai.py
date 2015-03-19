@@ -31,7 +31,6 @@ class TTTPerfectAI(TTTPlayer):
 
     def recurse_ahead(self, board, which_player):
         '''Given a board node, search all child nodes and return (the best space to play, who the expected winner is under optimal play)'''
-
         # If there is a winner, return that
         winner = board.is_winner()
         free = self.free_spaces(board)
@@ -49,16 +48,8 @@ class TTTPerfectAI(TTTPlayer):
             children.append((space, self.recurse_ahead(copy, which_player*(-1))[1]))
 
         # Pick the best move from possible moves
-        best = children[0]
-        for child in children[1:]:
-            # If we can win, do it
-            if child[1] == which_player:
-                return child
-            # if we can't win, take a tie
-            elif child[1] == 0:
-                best = child
+        return max(children, key = lambda child: child[1]*which_player)
 
-        return best
 
     def get_play(self, board, which_player):
         # First play
