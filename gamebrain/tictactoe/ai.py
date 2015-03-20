@@ -47,7 +47,8 @@ class TTTPerfectAI(TTTPlayer):
             copy.update_board(space, which_player)
             children.append((space, self.recurse_ahead(copy, which_player*(-1))[1]))
 
-        # Pick the best move from possible moves
+        # Pick the best move from possible moves at random
+        random.shuffle(children)
         return max(children, key = lambda child: child[1]*which_player)
 
 

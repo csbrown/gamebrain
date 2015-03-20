@@ -32,10 +32,10 @@ class TTTBrain(object):
 
     def create_hidden_layers(self):
         layers = []
-        numlayers = 3
+        numlayers = 2
         for layer in range(numlayers):
             #(5 - abs(layer - 5))
-            layers.append(TanhLayer(9))
+            layers.append(TanhLayer(4))
         return layers
 
     def add_layers(self, inp, outp, hiddens):

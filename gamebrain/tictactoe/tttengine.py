@@ -111,7 +111,7 @@ def record_compare(record1, record2):
 
 
 if __name__ == "__main__":
-    brainfile = "brain3.xml"
+    brainfile = "brain4.xml"
     LAI = ai.TTTPerfectAI()
     if sys.argv[1] == "evolve":
         best_record = {"tie" : 0, "win" : 0, "lose" : 0}
@@ -142,7 +142,8 @@ if __name__ == "__main__":
 
     if sys.argv[1] == "play":
         human = ai.TTTHuman()
-        players = [human, LAI]
+        AI = ai.TTTNNAI(filename = brainfile)
+        players = [human, AI]
         order = random.choice([0,1])
         game = TTTGame(players[order], players[(order+1)%2], verbose = False, tbm = 0)
         game.play()
